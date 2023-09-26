@@ -5,6 +5,8 @@ const searchButton = document.querySelector(".button2");
 
 
 
+
+
 const completeTodo = (parText, editButton) => {
     parText.classList.toggle("line-through");
     editButton.setAttribute("disabled", "disabled");
@@ -92,8 +94,26 @@ const createTodoElement = (item) => {
 
 	//add click event to delete button
 	delButton.addEventListener("click", () => {
+
+
+
+			const text2 = listItem.querySelector("p").innerText
+
+			todoList1 = todoList1.filter((todo1) => {
+				
+				return todo1.todo.trim() !== text2
+			})
+
+			console.log(todoList1)
+		
 		listItem.remove();
+		// todoList1.splice(index, 1);
+		localStorage.setItem("todoTask", JSON.stringify(todoList1));
+
+	
+		
 	})
+ 
 
 	if (item.isDone) {
 		completeTodo(parText, editButton);
@@ -167,7 +187,7 @@ searchButton.addEventListener("click", (e) => {
 
 	if(searchText.trim() === "") {
 		displayAllItems();
-		console.log("cat")
+		// console.log("cat")
 	} else {
 		filterItems(searchText);
 	}
